@@ -22,21 +22,28 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 //   });
 // });
 
+let timers = {"timers":[{"title":"a","project":"a","id":"88a30850-bf20-4e5f-add4-955cc695d535","elapsed":157183539,"runningSince":null},{"title":"b","project":"b","id":"75c927ff-a98b-4c97-b23b-339b11c0c29e","elapsed":0,"runningSince":1560160761059},{"title":"c","project":"c","id":"9f2bb1fc-6d41-4699-82a1-331e8f5468f5","elapsed":0,"runningSince":1560160780476}]};
+
 app.get('/getState', (req, res) => {
   fs.readFile('timers.json', (err, data) => {
     if (err) throw err;
 
-    res.send({ "timers": [{ "title": "a", "project": "a", "id": "88a30850-bf20-4e5f-add4-955cc695d535", "elapsed": 157183539, "runningSince": null }, { "title": "b", "project": "b", "id": "75c927ff-a98b-4c97-b23b-339b11c0c29e", "elapsed": 0, "runningSince": 1560160761059 }, { "title": "c", "project": "c", "id": "9f2bb1fc-6d41-4699-82a1-331e8f5468f5", "elapsed": 0, "runningSince": 1560160780476 }] });
+    res.send(timers);
   });
 });
 
-app.post('/syncState', (req, res) => {
-  syncState(req.body);
-  fs.readFile('timers.json', (err, data) => {
-    if (err) throw err;
+// app.post('/syncState', (req, res) => {
+//   syncState(req.body);
+//   fs.readFile('timers.json', (err, data) => {
+//     if (err) throw err;
 
-    res.send(data);
-  });
+//     res.send(data);
+//   });
+// });
+
+app.post('/syncState', (req, res) => {
+  timers = req.body;
+  res.send(timers);
 });
 
 const syncState = (state) => {
