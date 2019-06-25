@@ -27,20 +27,20 @@ class TimersDashboard extends Component {
             .catch(error => console.error('Error:', error));
     }
 
-    syncState = (objState) => {
-        var url = 'http://localhost:5000/syncState';
-        const content = JSON.stringify(objState);
+    // syncState = (objState) => {
+    //     var url = 'http://localhost:5000/syncState';
+    //     const content = JSON.stringify(objState);
 
-        fetch(url, {
-            method: 'POST',
-            mode: 'cors',
-            body: content,
-            headers: { 'Content-Type': 'application/json' },
-            redirect: 'follow',
-            referrer: 'no-referrer'
-        }).then(res => res.json())
-            .catch(error => console.error('Error:', error));
-    }
+    //     fetch(url, {
+    //         method: 'POST',
+    //         mode: 'cors',
+    //         body: content,
+    //         headers: { 'Content-Type': 'application/json' },
+    //         redirect: 'follow',
+    //         referrer: 'no-referrer'
+    //     }).then(res => res.json())
+    //         .catch(error => console.error('Error:', error));
+    // }
 
     handleCreateFormSubmit = (timer) => {
         const t = {
@@ -109,9 +109,9 @@ class TimersDashboard extends Component {
     }
 
     render() {
-        if (this.state.timers.length > 0) {
-            this.syncState(this.state);
-        }
+        // if (this.state.timers.length > 0) {
+        //     this.syncState(this.state);
+        // }
 
         return (
             <div className='ui three column centered grid'>
