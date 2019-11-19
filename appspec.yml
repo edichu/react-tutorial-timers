@@ -1,21 +1,14 @@
 version: 0.0
 os: linux
 files:
-    - source: /
-      destination: /apps/react-tutorial-timers
+  - source: /
+    destination: /var/api/
 hooks:
-#  ApplicationStop:
-#    - location: public/index.html
-#      timeout: 180
-  BeforeInstall:
-    - location: public/index.html
-      timeout: 180
   AfterInstall:
-    - location: public/index.html
-      timeout: 180
+    - location: scripts/npm-install.sh
+      runas: root
+      timeout: 300
   ApplicationStart:
-    - location: public/index.html
-      timeout: 180
-  ValidateService:
-    - location: public/index.html
-      timeout: 180
+    - location: scripts/npm-start.sh
+      runas: root
+      timeout: 60
