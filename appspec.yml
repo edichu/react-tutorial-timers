@@ -5,10 +5,10 @@ files:
     destination: /
 hooks:
   AfterInstall:
-    - location: scripts/npm-install.sh
+    - location: aws-scripts/npm-install.sh
       runas: root
       timeout: 3000
   ApplicationStart:
-    - location: scripts/npm-start.sh
+    - location: aws-scripts/npm-start.sh
       runas: root
       timeout: 3000
